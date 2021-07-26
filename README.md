@@ -16,3 +16,14 @@
 Редирект на {your-link}
 
 Если {hash} не найден, то редирект на {you-domain}
+
+## P.S.
+
+Использован микрофреймворк Lumen https://lumen.laravel.com/
+
+```text
+    App\Containers   - логика обработки API
+    App\Components   - бизнес-логика
+    App\Models       - модели Eloquent
+    App\Repositories - работа с моделями
+```
