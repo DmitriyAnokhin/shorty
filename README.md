@@ -1,8 +1,8 @@
 # Shorty - сокращатель ссылок
 
-##Методы
+## Методы
 
-###GET /shorty?url={your-link}
+### GET /shorty?url={your-link}
 
 Ответ
 ```json
@@ -11,7 +11,7 @@
 }
 ```
 
-###GET /{hash}
+### GET /{hash}
 
 Редирект на {your-link}
 
