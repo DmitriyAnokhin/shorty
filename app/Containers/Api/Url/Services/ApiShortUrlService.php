@@ -3,11 +3,12 @@
 namespace App\Containers\Api\Url\Services;
 
 use App\Components\Url\ShortUrlComponent;
-use App\Containers\Api\Url\Dto\ShortUrlDto;
+use App\Containers\Api\Url\Dto\ApiShortUrlDto;
 use App\Models\Url\ShortUrl;
+use App\Repositories\Url\ShortUrlDto;
 use App\Repositories\Url\ShortUrlRepository;
 
-class ShortUrlService
+class ApiShortUrlService
 {
 
     protected ShortUrlComponent $shortUrlComponent;
@@ -21,13 +22,16 @@ class ShortUrlService
     }
 
 
-    public function create(ShortUrlDto $dto): ShortUrl
+    public function create(ApiShortUrlDto $dto): ShortUrl
     {
         $shortUrl = $this->shortUrlRepository->readByUrl($dto->url);
 
         if (!$shortUrl) {
 
             $dto->hash = $this->shortUrlComponent->getHash();
+
+            // TODO: приведение экземпляров классов ?!
+            $dto = $dto->instanceTransform(ShortUrlDto::class);
 
             $shortUrl = $this->shortUrlRepository->create($dto);
         }
@@ -36,7 +40,7 @@ class ShortUrlService
     }
 
 
-    public function read(ShortUrlDto $dto): string
+    public function read(ApiShortUrlDto $dto): string
     {
         $shortUrl = $this->shortUrlRepository->readByHash($dto->hash);
 

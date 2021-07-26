@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Url;
 
-use App\Containers\Url\Dto\ShortUrlDto;
 use App\Models\Url\ShortUrl;
 
 class ShortUrlRepository
