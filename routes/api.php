@@ -13,8 +13,8 @@
 |
 */
 
-$router->get('shorty', 'Url\Controllers\ShortUrlController@create');
-$router->get('{hash}', 'Url\Controllers\ShortUrlController@read');
+$router->get('shorty', 'Api\Url\Controllers\ShortUrlController@create');
+$router->get('{hash}', 'Api\Url\Controllers\ShortUrlController@read');
 $router->get('', function () {
     return response()->json(['message' => 'Not Found!'], 404);
 });

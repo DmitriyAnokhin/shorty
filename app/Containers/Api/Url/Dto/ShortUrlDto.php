@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Containers\Url\Dto;
+namespace App\Containers\Api\Url\Dto;
 
 use App\Interfaces\BaseDto;
 
@@ -16,6 +16,16 @@ class ShortUrlDto extends BaseDto
     function dto(): self
     {
         return new self();
+    }
+
+
+    public function fillFromHash(string $hash): BaseDto
+    {
+        $dto = $this->dto();
+
+        $dto->hash = $hash;
+
+        return $dto;
     }
 
 }
