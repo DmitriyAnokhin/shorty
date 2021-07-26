@@ -27,3 +27,7 @@
     App\Models       - модели Eloquent
     App\Repositories - работа с моделями
 ```
+
+Этот проект https://github.com/DmitriyAnokhin/shorty
+
+Мой профиль https://github.com/DmitriyAnokhin
