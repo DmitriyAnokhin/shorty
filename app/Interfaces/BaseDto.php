@@ -11,11 +11,32 @@ abstract class BaseDto
     abstract function dto();
 
 
-    public function fillFromRequest(Request $request): self
+    public function fillFromRequest(Request $request)
     {
-        $dto = $this->dto();
+        return $this->fillFromArray($this->dto(), $request->toArray());
+    }
 
-        foreach ($request->toArray() as $k => $v) {
+
+    /**
+     * @throws Exception
+     */
+
+    public function instanceTransform(string $target)
+    {
+        $target = new $target();
+
+        if (is_object($target)) {
+
+            return $this->fillFromObject($target, $this);
+        }
+
+        throw new Exception('DTO target is not object', 500);
+    }
+
+
+    public function fillFromArray($dto, array $array)
+    {
+        foreach ($array as $k => $v) {
 
             $dto->$k = $v;
         }
@@ -24,22 +45,14 @@ abstract class BaseDto
     }
 
 
-    public function instanceTransform($target)
+    public function fillFromObject($dto, object $object)
     {
-        if (is_string($target)) {
-            $target = new $target();
+        foreach ($object as $k => $v) {
+
+            $dto->$k = $v;
         }
 
-        if (is_object($target)) {
-
-            foreach ($this as $k => $v) {
-                $target->$k = $v;
-            }
-
-            return $target;
-        }
-
-        throw new Exception('DTO target is not object', 500);
+        return $dto;
     }
 
 }

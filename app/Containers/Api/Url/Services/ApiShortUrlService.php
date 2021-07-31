@@ -30,7 +30,6 @@ class ApiShortUrlService
 
             $dto->hash = $this->shortUrlComponent->getHash();
 
-            // TODO: приведение экземпляров классов ?!
             $dto = $dto->instanceTransform(ShortUrlDto::class);
 
             $shortUrl = $this->shortUrlRepository->create($dto);

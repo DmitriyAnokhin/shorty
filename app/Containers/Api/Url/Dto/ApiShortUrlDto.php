@@ -13,7 +13,7 @@ class ApiShortUrlDto extends BaseDto
     public bool $active;
 
 
-    function dto(): self
+    public function dto(): self
     {
         return new self();
     }
