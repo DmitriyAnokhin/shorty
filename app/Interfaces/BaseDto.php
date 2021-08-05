@@ -13,29 +13,27 @@ abstract class BaseDto
 
     public function fillFromRequest(Request $request)
     {
-        return $this->fillFromArray($this->dto(), $request->toArray());
+        return $this->fillFromArray($request->toArray());
     }
 
-
-    /**
-     * @throws Exception
-     */
 
     public function instanceTransform(string $target)
     {
         $target = new $target();
 
-        if (is_object($target)) {
+        foreach ($this as $k => $v) {
 
-            return $this->fillFromObject($target, $this);
+            $target->$k = $v;
         }
 
-        throw new Exception('DTO target is not object', 500);
+        return $target;
     }
 
 
-    public function fillFromArray($dto, array $array)
+    public function fillFromArray(array $array)
     {
+        $dto = $this->dto();
+        
         foreach ($array as $k => $v) {
 
             $dto->$k = $v;
@@ -45,8 +43,10 @@ abstract class BaseDto
     }
 
 
-    public function fillFromObject($dto, object $object)
+    public function fillFromObject(object $object)
     {
+        $dto = $this->dto();
+        
         foreach ($object as $k => $v) {
 
             $dto->$k = $v;
