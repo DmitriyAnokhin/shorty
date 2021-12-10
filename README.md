@@ -7,7 +7,7 @@
 Ответ
 ```json
 {
-    "short_url": "{you-domain}/{hash}"
+    "short_url": "{your-domain}/{hash}"
 }
 ```
 
